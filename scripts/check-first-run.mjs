@@ -4,11 +4,17 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
-import {spawn} from 'node:child_process';
+import {spawn,execFileSync} from 'node:child_process';
 import {once} from 'node:events';
 import {createHash} from 'node:crypto';
 
-const isolated=process.platform==='linux'&&fs.readdirSync('/sys/class/net').every(name=>name==='lo');
+// Query the active network namespace through netlink; an inherited sysfs mount
+// can still describe the host's interfaces after unshare --net.
+let isolated=false;
+if(process.platform==='linux')try{
+ const links=JSON.parse(execFileSync('ip',['-j','link','show'],{encoding:'utf8',maxBuffer:65536}));
+ isolated=links.length===1&&links[0].ifname==='lo';
+}catch{}
 if(process.env.FASTLANE_REQUIRE_NETWORK_ISOLATION==='1')assert(isolated,'Run inside an isolated network namespace with loopback enabled');
 const root=process.cwd(),dataRoot=path.join(root,'data');
 fs.mkdirSync(dataRoot,{recursive:true});
