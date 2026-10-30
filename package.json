@@ -17,7 +17,8 @@
     "check:pipeline": "tsx --tsconfig tsconfig.json scripts/check-pipeline.ts",
     "check:animatic": "tsx --tsconfig tsconfig.json scripts/check-animatic.ts",
     "check:blocking": "tsx scripts/check-blocking.ts",
-    "check": "pnpm typecheck && pnpm check:safety && pnpm check:agent && pnpm check:pipeline && pnpm check:animatic && pnpm check:blocking"
+    "check": "pnpm typecheck && pnpm check:safety && pnpm check:agent && pnpm check:pipeline && pnpm check:animatic && pnpm check:blocking",
+    "check:first-run": "node scripts/check-first-run.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "0.131.0",

@@ -21,7 +21,7 @@ const delay=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 const hash=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
 let server,serverLog='';
 async function stop(){
- if(!server||server.exitCode!==null)return;
+ if(!server?.pid||server.exitCode!==null||server.signalCode!==null)return;
  const child=server,ended=once(child,'exit');
  child.kill('SIGTERM');
  await Promise.race([ended,delay(5000)]);
