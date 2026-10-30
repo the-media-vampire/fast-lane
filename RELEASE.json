@@ -1,25 +1,63 @@
 {
   "name": "Fast Lane",
   "maturity": "experimental local studio prototype",
-  "source_commit": "dd9c34cf22722be4d1ffa235169881620e0229a5",
+  "source_commit": "2d7b028dd40324477968f134419bcce7c244880f",
   "history": "Fresh release history; no private source history",
-  "included": "Application source, font licenses, offline checks and original illustrative SVG samples",
+  "included": "Application source, font licenses, offline checks, first-run acceptance and original illustrative SVG samples",
   "media_generation": "adapter_not_connected",
   "tests": {
-    "typescript": "passed",
-    "offline_assertions": 618,
+    "typescript": "passed on both Node versions",
+    "offline_assertions_per_node_version": 618,
     "safety": 90,
     "agent": 40,
     "pipeline": 46,
     "animatic": 15,
     "blocking": 427,
-    "fresh_sample": "New local database, one sample project, four original SVGs served with correct MIME",
-    "network": "Disabled for execution checks",
-    "paid_calls": 0,
-    "dependencies": "Existing exact installed dependencies reused read-only",
-    "production_build": "not_run",
-    "provider_integration": "not_connected"
+    "node": [
+      "22.13.1",
+      "24.10.0"
+    ],
+    "platform": "ubuntu-24.04",
+    "package_manager": "pnpm 10.32.1",
+    "dependencies": "Fresh frozen-lock installation with lifecycle scripts disabled on each runner",
+    "production_build": "passed on both Node versions",
+    "first_run": {
+      "project_created": true,
+      "sample_idempotent": true,
+      "sample_images_served": 3,
+      "sample_image_mime": "image/svg+xml",
+      "camera_plan_edited_and_exported": true,
+      "invalid_command_rejected_without_mutation": true,
+      "server_restart_preserved_project_and_export": true,
+      "external_network": "Disabled in the application acceptance network namespace; dependency installation and production build had network access",
+      "paid_calls": 0
+    },
+    "provider_integration": "not_connected",
+    "browser_capture": "not_tested",
+    "finished_film": "not_tested",
+    "independent_outside_use": "not_established",
+    "ci": "https://github.com/the-media-vampire/fast-lane/actions/runs/41143587934"
   },
-  "verified_at": "2026-10-30T02:33:13.217778+00:00",
-  "voice_ids": "User-configurable placeholders; no source account voice IDs"
+  "verified_at": "2026-10-30T23:19:16Z",
+  "voice_ids": "User-configurable placeholders; no source account voice IDs",
+  "previous_verification": {
+    "source_commit": "dd9c34cf22722be4d1ffa235169881620e0229a5",
+    "verified_at": "2026-10-30T02:33:13.217778+00:00",
+    "tests": {
+      "typescript": "passed",
+      "offline_assertions": 618,
+      "safety": 90,
+      "agent": 40,
+      "pipeline": 46,
+      "animatic": 15,
+      "blocking": 427,
+      "fresh_sample": "New local database, one sample project, four original SVGs served with correct MIME",
+      "network": "Disabled for execution checks",
+      "paid_calls": 0,
+      "dependencies": "Existing exact installed dependencies reused read-only",
+      "production_build": "not_run",
+      "provider_integration": "not_connected"
+    }
+  },
+  "source_commit_note": "Exact public commit tested by the linked CI run; later README and release-evidence edits do not change the tested application or check code."
 }
