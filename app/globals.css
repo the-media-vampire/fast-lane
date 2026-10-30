@@ -1,0 +1,35 @@
+/* Fast Lane design tokens. Components import their own stylesheet sections below. */
+:root {
+  --bg: #101112;
+  --panel: #191b1c;
+  --panel-2: #141617;
+  --raised: #222527;
+  --chip: #27292a;
+  --ink: #efebe3;
+  --ink-2: #cecdc6;
+  --muted: #aaa9a2;
+  --faint: #7d7f7a;
+  --accent: #d7c29d;
+  --accent-ink: #171713;
+  --accent-line: #6d6250;
+  --line: #303233;
+  --line-2: #41433f;
+  --ok: #a9bd9c;
+  --warn: #dcb779;
+  --bad: #d99686;
+  --radius: 8px;
+  --radius-sm: 5px;
+  --serif: var(--font-serif), Georgia, "Times New Roman", serif;
+  --sans: var(--font-sans), Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font: 14px/1.5 var(--sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}

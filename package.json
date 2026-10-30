@@ -1,0 +1,42 @@
+{
+  "name": "fast-lane",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Fast Lane: an editable film studio prototype with shared blocking and timing.",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "dev": "next dev --port 3100",
+    "build": "next build",
+    "start": "next start --port 3100",
+    "typecheck": "tsc --noEmit",
+    "check:providers": "tsx --tsconfig tsconfig.json scripts/check-providers.ts",
+    "check:safety": "tsx --tsconfig tsconfig.json scripts/check-safety.ts",
+    "check:agent": "tsx --tsconfig tsconfig.json scripts/check-agent.ts",
+    "check:pipeline": "tsx --tsconfig tsconfig.json scripts/check-pipeline.ts",
+    "check:animatic": "tsx --tsconfig tsconfig.json scripts/check-animatic.ts",
+    "check:blocking": "tsx scripts/check-blocking.ts",
+    "check": "pnpm typecheck && pnpm check:safety && pnpm check:agent && pnpm check:pipeline && pnpm check:animatic && pnpm check:blocking"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "0.131.0",
+    "@react-three/drei": "10.7.7",
+    "@react-three/fiber": "9.6.1",
+    "lucide-react": "0.577.0",
+    "next": "16.3.4",
+    "playwright-core": "1.62.1",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "three": "0.184.0",
+    "zod": "4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.1",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.3",
+    "@types/three": "0.184.0",
+    "tsx": "4.23.13",
+    "typescript": "5.9.3"
+  }
+}
