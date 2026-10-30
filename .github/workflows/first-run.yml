@@ -1,0 +1,43 @@
+name: Fresh install and local workflow
+
+on:
+  push:
+    branches: [main, ci/first-run-20261030]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  first-run:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22.13.1, 24.10.1]
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+      FASTLANE_LIVE: 'off'
+      FASTLANE_WORKER: 'off'
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: ${{ matrix.node }}
+          package-manager-cache: false
+      - name: Install pinned package manager
+        run: npm install --global pnpm@10.32.1
+      - name: Install exact dependencies from a fresh checkout
+        run: pnpm install --frozen-lockfile --ignore-scripts
+      - name: Configure the documented local defaults
+        run: cp .env.example .env.local
+      - name: Existing offline checks
+        run: pnpm check
+      - name: Production build
+        run: pnpm build
+      - name: Create, edit, export and restart with external networking unavailable
+        run: sudo unshare --net bash -c 'ip link set lo up; exec env FASTLANE_REQUIRE_NETWORK_ISOLATION=1 "$1" scripts/check-first-run.mjs' _ "$(command -v node)"
